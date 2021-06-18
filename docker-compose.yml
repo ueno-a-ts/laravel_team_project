@@ -11,6 +11,10 @@ services:
     environment:
       - DB_CONNECTION=mysql
       - DB_HOST=db
+    command: >
+      bash -c 'php /usr/bin/composer require hirak/prestissimo &&
+      php /usr/bin/composer require laravel/ui:2.4 &&
+      php /usr/bin/composer install --optimize-autoloader &&
 
   web:
     image: nginx:1.18-alpine
