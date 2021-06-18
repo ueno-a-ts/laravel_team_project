@@ -2,7 +2,8 @@ version: "3.8"
 services:
   app:
     build: 
-      context: ./infra/php
+      context: .
+      dockerfile: ./infra/php/Dockerfile
     volumes:
       - ./backend:/work
       - ./logs:/var/log/php
@@ -16,11 +17,8 @@ services:
       - DB_USERNAME=dbuser
       - DB_PASSWORD=dbpass
     command: >
-      bash -c 'php /usr/bin/composer require hirak/prestissimo &&
-      php /usr/bin/composer require laravel/ui:2.4 &&
-      php /usr/bin/composer install --optimize-autoloader &&
-      php artisan ui bootstrap --auth &&
-      npm install && npm run dev &&
+      bash -c 'php artisan ui bootstrap --auth &&
+      npm run dev &&
       php /usr/bin/composer dump-autoload &&
       php artisan migrate --force &&
       php artisan db:seed --force &&

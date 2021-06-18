@@ -11,7 +11,14 @@ RUN apt update && \
 RUN docker-php-ext-install intl pdo_mysql zip bcmath
 
 COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
-
 RUN php /usr/bin/composer config -g repos.packagist composer https://packagist.jp 
 
-COPY ./php.ini /usr/local/etc/php/php.ini
+COPY ./infra/php/php.ini /usr/local/etc/php/php.ini
+
+WORKDIR /work
+
+ADD ../backend/composer.* ./
+RUN php /usr/bin/composer install --no-autoloader
+
+ADD ../backend/package*.json ./
+RUN npm install
