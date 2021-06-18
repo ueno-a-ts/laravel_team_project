@@ -29,13 +29,6 @@ class StockTableSeeder extends Seeder
        ]);
 
        DB::table('items')->insert([
-           'item_name' => 'エレキギター イエロー',
-           'item_description' => 'プレイヤーの表現力に答える厳選された素材とこだわりとテクノロジー',
-           'item_price' => 1880000,
-           'imgpath' => 'guitar_history_yellow.jpg',
-       ]);
-
-       DB::table('items')->insert([
            'item_name' => 'アコースティックギター ホワイト',
            'item_description' => '王道ともいえるクラシカルなストラトスペック、数量限定生産の2019年モデル',
            'item_price' => 87000,
@@ -103,7 +96,7 @@ class StockTableSeeder extends Seeder
            'item_name' => '安室奈美恵 BEST FICTION',
            'item_description' => 'ミリオンセールスを記録した最新ベスト・アルバム!',
            'item_price' => 1720,
-           'imgpath' => '',
+           'imgpath' => 'amuro_namie_best_fiction.jpg',
        ]);
 
        DB::table('items')->insert([
