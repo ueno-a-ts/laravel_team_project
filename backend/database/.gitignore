@@ -1,3 +1,2 @@
-backend/composer.lock
 *.sqlite
 *.sqlite-journal
