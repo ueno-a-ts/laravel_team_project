@@ -17,13 +17,20 @@ services:
       - DB_DATABASE=laravel
       - DB_USERNAME=dbuser
       - DB_PASSWORD=dbpass
-    command: >
-      bash -c 'php artisan ui bootstrap --auth &&
-      npm run dev &&
-      php /usr/bin/composer dump-autoload &&
-      php artisan migrate --force &&
-      php artisan db:seed --force &&
-      php-fpm'
+    entrypoint:
+        - bash
+    command: 
+      - -c
+      - |
+        [ -f ~/.exec-once ] || {
+          php artisan ui bootstrap --auth &&
+          npm run dev &&
+          php /usr/bin/composer dump-autoload && 
+          php artisan migrate --force && 
+          php artisan db:seed --force && 
+          touch ~/.exec-once
+        }
+        php-fpm
 
   web:
     image: nginx:1.18-alpine
