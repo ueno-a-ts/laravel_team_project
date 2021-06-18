@@ -17,8 +17,9 @@
                 <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="" >
                 <br>
             </div>
-
         @endforeach
+
+        {{ $items -> links() }}
     </div>
 </body>
 </html>
