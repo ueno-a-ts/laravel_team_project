@@ -18,3 +18,12 @@ RUN apt-get update && \
 COPY ./php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work
+
+# login fucntion add
+RUN composer require laravel/ui:^2.4
+
+RUN php artisan ui bootstrap --auth
+
+RUN npm install && npm run dev
+
+RUN composer dump-autoload 
