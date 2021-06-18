@@ -23,7 +23,6 @@ services:
       - -c
       - |
         [ -f ~/.exec-once ] || {
-          php artisan ui bootstrap --auth &&
           npm install && npm run dev && 
           php /usr/bin/composer dump-autoload && 
           php artisan migrate --force && 
