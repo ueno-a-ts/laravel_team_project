@@ -36,12 +36,13 @@ services:
 
   db:
     image: mysql:8.0
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --default-time-zone=Asia/Tokyo
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
     volumes:
       - db-store:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
+      TZ: Asia/Tokyo
       MYSQL_DATABASE: laravel
       MYSQL_USER: dbuser
       MYSQL_PASSWORD: dbpass
