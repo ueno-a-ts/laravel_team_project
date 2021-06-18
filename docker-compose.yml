@@ -27,6 +27,8 @@ services:
           php /usr/bin/composer dump-autoload && 
           php artisan migrate --force && 
           php artisan db:seed --force && 
+          cp .env.example .env &&
+          php artisan key:generate &&
           touch ~/.exec-once
         }
         php-fpm
