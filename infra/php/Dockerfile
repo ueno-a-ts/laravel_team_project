@@ -26,4 +26,7 @@ RUN php artisan ui bootstrap --auth
 
 RUN npm install && npm run dev
 
-RUN composer dump-autoload 
+# sheeds file run
+RUN composer dump-autoload
+
+RUN php artisan db:seed
