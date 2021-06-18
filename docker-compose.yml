@@ -7,6 +7,7 @@ services:
     volumes:
       - ./backend:/work
       - /work/node_modules
+      - /work/vendor
       - ./logs:/var/log/php
       - ./infra/php/php.ini:/usr/local/etc/php/php.ini
     working_dir: /work
