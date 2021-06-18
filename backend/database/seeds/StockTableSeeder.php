@@ -93,10 +93,10 @@ class StockTableSeeder extends Seeder
        ]);
 
        DB::table('items')->insert([
-           'item_name' => 'アコースティックギター',
-           'item_description' => 'ヤマハ製のエントリーモデルです',
-           'item_price' => 25600,
-           'imgpath' => '',
+           'item_name' => 'エレキベース',
+           'item_description' => 'これからベースを始めようとお考えの方にオススメしたい1本',
+           'item_price' => 30000,
+           'imgpath' => 'electric_bass.jpg',
        ]);
 
        DB::table('items')->insert([
