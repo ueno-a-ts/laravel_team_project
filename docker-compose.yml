@@ -22,6 +22,7 @@ services:
       php artisan ui bootstrap --auth &&
       npm install && npm run dev &&
       php /usr/bin/composer dump-autoload &&
+      php artisan migrate --force &&
       php artisan db:seed --force &&
       php-fpm'
 
