@@ -21,7 +21,7 @@ Route::get('/', 'ItemController@index');
 
 Route::get('/items/{item}', 'ItemController@show');
 
-Route::get('/mycart', 'CartController@myCart');
+Route::get('/mycart', 'CartController@myCart')->middleware('auth');
 
 Auth::routes();
 
