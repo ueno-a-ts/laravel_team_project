@@ -22,7 +22,7 @@
             <form method="POST" action="/">
                 @csrf
                 <input type="hidden" name="cart_items" value="{{ $item -> id }}">
-                <button class="button" type="submit">Buy</button>
+                <button class="button" type="submit">カートに追加する</button>
             </form>
         </div>
     </div>
