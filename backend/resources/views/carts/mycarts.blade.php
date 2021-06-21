@@ -1,4 +1,8 @@
+@extends('layouts.layout')
 
+@section('page_title', 'カート一覧')
+
+@section('content')
 <div class="container-fluid">
  <div class="">
      <div class="mx-auto" style="max-width:1200px">
@@ -13,3 +17,4 @@
      </div>
  </div>
 </div>
+@endsection
