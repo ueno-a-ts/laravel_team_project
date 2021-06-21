@@ -12,4 +12,9 @@ class ItemController extends Controller
 
         return view('items.index', compact('items'));
     }
+
+    public function show($itemId){
+        $item = Item::findOrFail($itemId);
+        return view('items.show', compact('item'));
+    }
 }

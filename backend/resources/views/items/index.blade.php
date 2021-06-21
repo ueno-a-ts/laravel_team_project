@@ -13,9 +13,10 @@
         <br>
         @foreach ($items as $item)
             <div class="title">
-                <h1>{{ $item -> item_name }}</h1>
-                <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="" >
-                <br>
+                <a href="/items/{{ $item -> id }}">
+                    <h1>{{ $item -> item_name }}</h1>
+                    <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="" >
+                </a>
             </div>
         @endforeach
 
