@@ -20,6 +20,8 @@ Route::get('/', 'ItemController@index');
 
 Route::get('/items/{item}', 'ItemController@show');
 
-// Auth::routes();
+Route::get('/mycart', 'CartController@myCart');
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
