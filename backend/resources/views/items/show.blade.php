@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ECサイト</title>
-</head>
-<body>
+@extends('layouts.layout')
+
+@section('page_title')
+{{ $item -> item_name }}@endsection
+
+@section('content')
     <div>
         <a href="{{ url()->previous() }}">< back</a>
     </div>
@@ -26,5 +23,4 @@
             </form>
         </div>
     </div>
-</body>
-</html>
+@endsection
