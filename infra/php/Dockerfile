@@ -4,21 +4,29 @@ SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/composer
 
-RUN apt update && \
-  apt -y install git unzip libzip-dev libicu-dev libonig-dev npm nodejs && \
-  apt clean && rm -rf /var/lib/apt/lists/*
-
-RUN docker-php-ext-install intl pdo_mysql zip bcmath
-
 COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
-RUN php /usr/bin/composer config -g repos.packagist composer https://packagist.jp 
 
-COPY ./infra/php/php.ini /usr/local/etc/php/php.ini
+RUN apt-get update && \
+  apt-get -y install git unzip libzip-dev libicu-dev libonig-dev npm nodejs && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  curl -sS https://getcomposer.org/installer | php -- --version=1.10.15 --install-dir=/usr/bin --filename=composer && \
+  composer config -g repos.packagist composer https://packagist.jp && \
+  composer global require hirak/prestissimo && \
+  docker-php-ext-install intl pdo_mysql zip bcmath
+
+COPY ./php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work
 
-ADD ../backend/composer.* ./
-RUN php /usr/bin/composer install --no-autoloader
+# login fucntion add
+RUN composer require laravel/ui:^2.4
 
-ADD ../backend/package*.json ./
-RUN npm install
+RUN php artisan ui bootstrap --auth
+
+RUN npm install && npm run dev
+
+# sheeds file run
+RUN composer dump-autoload
+
+RUN php artisan db:seed
