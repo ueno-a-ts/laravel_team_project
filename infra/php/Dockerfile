@@ -20,13 +20,14 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 WORKDIR /work
 
 # login fucntion add
-RUN composer require laravel/ui:^2.4
+# RUN composer require laravel/ui:^2.4
 
-RUN php artisan ui bootstrap --auth
+# RUN php artisan ui bootstrap --auth
 
-RUN npm install && npm run dev
+# RUN npm install && npm run dev
+
 
 # sheeds file run
-RUN composer dump-autoload
+# RUN composer dump-autoload
 
-RUN php artisan db:seed
+# RUN php artisan db:seed
