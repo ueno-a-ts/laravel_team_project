@@ -14,6 +14,11 @@
             <p><img src="/images/{{$my_cart->item->imgpath}}" alt="" class="incart" ></p>
             <p>{{$my_cart->item->item_name}}</p>
             <p>{{ number_format($my_cart->item->item_price)}}円 </p>
+            <form action="/cartdelete" method="post">
+                @csrf
+                <input type="hidden" name="item_id" value="{{ $my_cart->item->id }}">
+                <input type="submit" value="カートから削除する">
+            </form>
         </div>
         @endforeach
         </div>
