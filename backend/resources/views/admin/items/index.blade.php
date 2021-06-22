@@ -5,6 +5,7 @@
 @section('content')
     <div>
         <a href="{{ url()->previous() }}">< back</a>
+        <a href="/admin/items/create">商品登録</a>
     </div>
     <div id="items-top">
 
