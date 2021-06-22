@@ -12,8 +12,7 @@ class ItemController extends Controller
         return view('items.index', compact('items'));
     }
 
-    public function show($itemId){
-        $item = Item::findOrFail($itemId);
+    public function show(Item $item){
         return view('items.show', compact('item'));
     }
 
@@ -25,8 +24,7 @@ class ItemController extends Controller
         return view('admin.items.index', compact('items'));
     }
 
-    public function adminShow($itemId){
-        $item = Item::findOrFail($itemId);
+    public function adminShow(Item $item){
         return view('admin.items.show', compact('item'));
     }
 
@@ -59,8 +57,8 @@ class ItemController extends Controller
         return redirect('/admin/items');
     }
 
-    public function adminEdit($itemId){
-
+    public function adminEdit(Item $itemId){
+        
     }
 
     public function adminUpdate(){
