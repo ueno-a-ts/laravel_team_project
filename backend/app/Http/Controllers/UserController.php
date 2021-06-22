@@ -13,4 +13,9 @@ class UserController extends Controller
        return view('admin.users.index', compact('users'));
    }
 
+   public function adminDestroy(User $user){
+    $user = User::whereIn('id', $user)->delete();
+    return redirect('/admin/users');
+   }
+
 }
