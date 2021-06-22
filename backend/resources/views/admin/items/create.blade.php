@@ -23,6 +23,9 @@
                             name="item_name"
                             required
                             value="{{ old('item_name') }}">
+                        @error('item_name')
+                            <p class="help">{{ $errors->first('item_name')}}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -34,6 +37,9 @@
                             name="item_description"
                             required
                             >{{ old('item_description') }}</textarea>
+                        @error('item_description')
+                            <p class="help">{{ $errors->first('item_description')}}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -45,18 +51,24 @@
                             name="item_price"
                             required
                             value="{{ old('item_price') }}">
+                        @error('item_price')
+                            <p class="help">{{ $errors->first('item_price')}}</p>
+                        @enderror
                     </div>
                 </div>
 
-                <div class="form-group @if(!empty($errors->first('image'))) has-error @endif">
+                <div class="field">
                     <label for="tag" class="label">商品写真</label>
                     <div>
                         <input
                             type="file"
                             name="imgpath"
                             required
-                            value="{{ old('imgpath') }}">
+                            accept="image/png,image/jpeg,image/gif">
                             <span class="help-block">{{$errors->first('image')}}</span>
+                        @error('imgpath')
+                            <p class="help">{{ $errors->first('imgpath')}}</p>
+                        @enderror
                     </div>
                 </div>
 

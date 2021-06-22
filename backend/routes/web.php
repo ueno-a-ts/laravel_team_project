@@ -30,7 +30,7 @@ Route::get('/admin', function(){
 Route::get('/admin/items', 'ItemController@adminIndex');
 Route::get('/admin/items/create', 'ItemController@adminCreate');
 Route::post('/admin/items', 'ItemController@adminStore');
-Route::get('/admin/items/{item}', 'ItemController@adminShow');
-// Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
-// Route::get('/admin/items/{item}', 'ItemController@adminUpdate');
-// Route::get('/admin/items/{item}', 'ItemController@adminDestroy');
+Route::get('/admin/items/{item}', 'ItemController@adminShow')->name('admin.items.show');
+Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
+Route::put('/admin/items/{item}', 'ItemController@adminUpdate');
+Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');

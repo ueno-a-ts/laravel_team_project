@@ -34,6 +34,7 @@ class ItemController extends Controller
 
     public function adminStore(Request $request){
         $this->validateItem();
+        $this->validateImg();
 
         $item = new Item();
 
@@ -57,16 +58,19 @@ class ItemController extends Controller
         return redirect('/admin/items');
     }
 
-    public function adminEdit(Item $itemId){
-        
+    public function adminEdit(Item $item){
+        return view('admin.items.edit', compact('item'));
     }
 
-    public function adminUpdate(){
-
+    // todo: 画像の変更も実装したい
+    public function adminUpdate(Item $item){
+        $item->update($this->validateItem());
+        return redirect($item -> path());
     }
 
-    public function adminDestroy(){
-
+    public function adminDestroy(Item $item){
+        $item = Item::whereIn('id', $item)->delete();
+        return redirect('/admin/items');
     }
 
     // input validation
@@ -74,7 +78,12 @@ class ItemController extends Controller
         return request()->validate([
             'item_name' => 'required',
             'item_description' => 'required',
-            'item_price' => 'required',
+            'item_price' => 'required'
+        ]);
+    }
+
+    protected function validateImg(){
+        return request()->validate([
             'imgpath' => 'required|file|image|mimes:jpeg,png'
         ]);
     }
