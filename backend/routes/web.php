@@ -18,6 +18,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Items route
 Route::get('/', 'ItemController@index');
-
 Route::get('/items/{item}', 'ItemController@show');
+
+// Admin Route
+Route::get('/admin', function(){
+    return view('admin');
+});
+
+Route::get('/admin/items', 'ItemController@adminIndex');
+Route::get('/admin/items/create', 'ItemController@adminCreate');
+Route::post('/admin/items', 'ItemController@adminStore');
+Route::get('/admin/items/{item}', 'ItemController@adminShow');
+// Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
+// Route::get('/admin/items/{item}', 'ItemController@adminUpdate');
+// Route::get('/admin/items/{item}', 'ItemController@adminDestroy');
