@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+// Items route
 Route::get('/', 'ItemController@index');
-
 Route::get('/items/{item}', 'ItemController@show');
 
 Route::get('/mycart', 'CartController@myCart')->middleware('auth');
@@ -27,3 +27,15 @@ Route::post('/items/mycart', 'CartController@addMycart');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Admin Route
+Route::get('/admin', function(){
+    return view('admin');
+});
+
+Route::get('/admin/items', 'ItemController@adminIndex');
+Route::get('/admin/items/create', 'ItemController@adminCreate');
+Route::post('/admin/items', 'ItemController@adminStore');
+Route::get('/admin/items/{item}', 'ItemController@adminShow')->name('admin.items.show');
+Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
+Route::put('/admin/items/{item}', 'ItemController@adminUpdate');
+Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
