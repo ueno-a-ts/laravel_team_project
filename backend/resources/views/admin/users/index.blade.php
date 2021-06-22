@@ -18,7 +18,14 @@
                     <li>{{ $user -> address }}</li>
                 </ul>
             </div>
-        @endforeach
 
+            <div>
+                <form method="POST" action="/admin/users/{{ $user -> id }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="" type="submit" style="background-color: red">Delete</button>
+                </form>
+            </div>
+        @endforeach
     </div>
 @endsection

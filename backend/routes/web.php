@@ -38,3 +38,4 @@ Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
 
 // admin users Route
 Route::get('/admin/users', 'UserController@adminIndex');
+Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
