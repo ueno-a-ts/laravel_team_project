@@ -6,8 +6,23 @@
 
 @section('content')
     <div>
-        <a href="{{ url()->previous() }}">< back</a>
+        <a href="/admin/items">< back</a>
     </div>
+
+    <div>
+        <div>
+            <button class="" onclick="location.href='./{{ $item -> id}}/edit'">Edit</button>
+        </div>
+
+        <div>
+            <form method="POST" action="/admin/items/{{ $item -> id }}">
+                @csrf
+                @method('DELETE')
+                <button class="" type="submit" style="background-color: red">Delete</button>
+            </form>
+        </div>
+    </div>
+
     <div id="items-top">
         <div class="title">
             <h1>{{ $item -> item_name }}</h1>
