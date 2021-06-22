@@ -12,7 +12,7 @@ class Cart extends Model
 
     public function item()
     {
-        return $this->belongsTo('\App\Models\Item');
+        return $this->belongsTo('\App\Item');
     }
 
     public function showCart()

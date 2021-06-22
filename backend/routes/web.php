@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'ItemController@index');
 Route::get('/items/{item}', 'ItemController@show');
 
+// Cart route
 Route::get('/mycart', 'CartController@myCart')->middleware('auth');
 Route::post('/items/mycart', 'CartController@addMycart');
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
 // Admin Route
 Route::get('/admin', function(){
     return view('admin');
