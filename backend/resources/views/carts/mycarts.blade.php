@@ -21,6 +21,12 @@
             </form>
         </div>
         @endforeach
+        <form action="/buy" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger btn-lg text-center buy-btn" >
+                購入する
+            </button>
+        </form>
         </div>
         <a class="" href="/">商品一覧へ</a>
     </div>

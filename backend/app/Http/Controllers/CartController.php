@@ -34,15 +34,20 @@ class CartController extends Controller
 
     public function deleteCart(Request $request,Cart $cart)
     {
- 
+
         //カートから削除の処理
         $item_id=$request->item_id;
         $message = $cart->deleteCart($item_id);
- 
+
         //追加後の情報を取得
         $my_carts = $cart->showCart();
- 
+
         return view('carts.mycarts',compact('my_carts' , 'message'));
- 
+
+    }
+
+    public function buy(Cart $cart)
+    {
+        return view('carts.buy');
     }
 }

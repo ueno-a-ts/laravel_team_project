@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-
-
 // Items route
 Route::get('/', 'ItemController@index');
 Route::get('/items/{item}', 'ItemController@show');
@@ -25,6 +23,8 @@ Route::get('/items/{item}', 'ItemController@show');
 Route::get('/mycart', 'CartController@myCart')->middleware('auth');
 Route::post('/items/mycart', 'CartController@addMycart');
 Route::post('/cartdelete','CartController@deleteCart');
+Route::post('/buy', 'CartController@buy');
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
