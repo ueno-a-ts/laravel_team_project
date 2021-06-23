@@ -37,7 +37,7 @@ class Cart extends Model
     }
 
     public function deleteCart($item_id)
-{
+    {
         $user_id = Auth::id(); 
         $delete = $this->where('user_id', $user_id)->where('item_id',$item_id)->delete();
         
@@ -47,6 +47,18 @@ class Cart extends Model
             $message = '削除に失敗しました';
         }
         return $message;
-}
+    }
+
+    public function checkoutCart()
+    {
+        $user_id = Auth::id(); 
+        $checkout_items=$this->where('user_id', $user_id)->get();
+        $this->where('user_id', $user_id)->delete();
+
+        return $checkout_items;     
+    }
+
+
+
 }
 

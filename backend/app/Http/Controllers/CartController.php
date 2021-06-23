@@ -48,6 +48,7 @@ class CartController extends Controller
 
     public function buy(Cart $cart)
     {
+        $buy_info = $cart->checkoutCart();       
         return view('carts.buy');
     }
 }
