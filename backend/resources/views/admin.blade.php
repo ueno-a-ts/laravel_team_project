@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-
 @section('page_title', '管理者画面')
 
 @section('content')

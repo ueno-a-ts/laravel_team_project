@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/top', 'ItemController@topIndex');
 
 // Items route
 Route::get('/', 'ItemController@index');
@@ -39,3 +42,11 @@ Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
 // admin users Route
 Route::get('/admin/users', 'UserController@adminIndex');
 Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
+
+// cart Route
+Route::get('/cart', function(){
+    return view('cart.cart');
+});
+Route::get('/thankyou', function(){
+    return view('cart.thankyou');
+});

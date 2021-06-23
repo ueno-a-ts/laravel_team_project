@@ -1,26 +1,31 @@
-@extends('layouts.layout')
+@extends('layouts.show')
 
 @section('page_title')
 {{ $item -> item_name }}@endsection
 
 @section('content')
-    <div>
-        <a href="{{ url()->previous() }}">< back</a>
-    </div>
-    <div id="items-top">
-        <div class="title">
-            <h1>{{ $item -> item_name }}</h1>
-            <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="" >
-            <p>{{ $item -> item_description }}</p>
-            <p>{{ number_format($item -> item_price) }}</p>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="img-fluid" >
         </div>
-        <div>
-            {{-- todo: カートとの連携 --}}
-            <form method="POST" action="/">
-                @csrf
-                <input type="hidden" name="cart_items" value="{{ $item -> id }}">
-                <button class="button" type="submit">カートに追加する</button>
-            </form>
+
+        <div class="col-md-6">
+            <h1 class="text-black">{{ $item -> item_name }}</h1>
+
+            <p>{{ $item -> item_description }}</p>
+            <p>
+                <strong class="text-primary h4">
+                    {{ number_format($item -> item_price) }}
+                </strong>
+            </p>
+            <div>
+                {{-- todo: カートとの連携 --}}
+                <form method="POST" action="/">
+                    @csrf
+                    <input type="hidden" name="cart_items" value="{{ $item -> id }}">
+                    <button class="btn btn-sm btn-primary" type="submit">カートに追加する</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

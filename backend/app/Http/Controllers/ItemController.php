@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function index(){
-        $items = Item::paginate(6);
+        $items = Item::orderBy('updated_at', 'asc')->paginate(6);
         return view('items.index', compact('items'));
     }
 
@@ -16,6 +16,10 @@ class ItemController extends Controller
         return view('items.show', compact('item'));
     }
 
+    public function topIndex(){
+        $items = Item::latest()->take(3)->get();
+        return view('items.topItem', compact('items'));
+    }
 
     // todo: index/show を管理者・一般で表示分けし、コントローラーの重複を削除
 

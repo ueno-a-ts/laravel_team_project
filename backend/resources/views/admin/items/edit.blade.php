@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('page_title', '商品編集')
+@section('page_title', 'admin item edit')
 
 @section('content')
 <div id="wrapper">
@@ -10,53 +10,70 @@
         </div>
 
         <div>
-            <h1>商品編集</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                  <h2>Edit Items</h2>
+                </div>
+            </div>
 
-            <form method="POST" action="/admin/items/{{ $item -> id }}" enctype="multipart/form-data">
+            <form method="POST" action="/admin/items" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
 
-                <div class="field">
-                    <label for="item_name" class="label">商品名</label>
-                    <div class="control">
-                        <input
-                            type="text"
-                            name="item_name"
-                            required
-                            value="{{ $item -> item_name }}">
-                        @error('item_name')
-                            <p class="help">{{ $errors->first('item_name')}}</p>
-                        @enderror
+                <div class="p-3 p-lg-5 border">
+                    <div class="form-group row">
+                        <label for="item_name" class="text-black">
+                            商品名
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-12">
+                            <input
+                                type="text"
+                                name="item_name"
+                                required
+                                value="{{ $item -> item_name }}"
+                                class="form-control">
+                            @error('item_name')
+                                <p class="help">{{ $errors->first('item_name')}}</p>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label for="item_description" class="label">商品説明</label>
-                    <div class="control">
-                        <textarea
-                            type="text"
-                            name="item_description"
-                            required
-                            >{{ $item -> item_description }}</textarea>
-                        @error('item_description')
-                            <p class="help">{{ $errors->first('item_description')}}</p>
-                        @enderror
+                    <div class="form-group row">
+                        <label for="item_description" class="text-black">
+                            商品説明
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-12">
+                            <textarea
+                                type="text"
+                                name="item_description"
+                                required
+                                cols="30" rows="7"
+                                class="form-control"
+                                >{{ $item -> item_description }}</textarea>
+                            @error('item_description')
+                                <p class="help">{{ $errors->first('item_description')}}</p>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label for="item_price" class="label">商品価格</label>
-                    <div class="control">
-                        <input
-                            type="text"
-                            name="item_price"
-                            required
-                            value="{{ $item -> item_price }}">
-                        @error('item_price')
-                            <p class="help">{{ $errors->first('item_price')}}</p>
-                        @enderror
+                    <div class="form-group row">
+                        <label for="item_price" class="text-black">
+                            商品価格
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-12">
+                            <input
+                                type="text"
+                                name="item_price"
+                                required
+                                value="{{ $item -> item_price }}"
+                                class="form-control">
+                            @error('item_price')
+                                <p class="help">{{ $errors->first('item_price')}}</p>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
                 <div class="field">
                     <label for="tag" class="label">商品写真</label>
