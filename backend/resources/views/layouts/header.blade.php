@@ -10,9 +10,9 @@
             <div class="row align-items-center">
 
               <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-                <form action="" class="site-block-top-search">
+                <form method="GET" action="/items/search" class="site-block-top-search">
                   <span class="icon icon-search2"></span>
-                  <input type="text" class="form-control border-0" placeholder="Search">
+                  <input type="text" name="item_search" class="form-control border-0" placeholder="Item Search">
                 </form>
               </div>
 

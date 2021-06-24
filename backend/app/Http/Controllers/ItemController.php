@@ -21,6 +21,18 @@ class ItemController extends Controller
         return view('items.topItem', compact('items'));
     }
 
+    public function itemSearch(Request $request){
+        $search_word = $request -> input('item_search');
+
+        if (!empty($search_word)) {
+            $query = Item::where('item_name', 'LIKE', "%{$search_word}%")
+                ->orWhere('item_description', 'LIKE', "%{$search_word}%");
+        }
+
+        $items = $query->get();
+        return view('search', compact('items', 'search_word'));
+    }
+
     // todo: index/show を管理者・一般で表示分けし、コントローラーの重複を削除
 
     public function adminIndex(){

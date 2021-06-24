@@ -23,6 +23,9 @@ Route::get('/top', 'ItemController@topIndex');
 
 // Items route
 Route::get('/', 'ItemController@index');
+
+Route::get('/items/search', 'ItemController@itemSearch');
+
 Route::get('/items/{item}', 'ItemController@show');
 
 // Admin Route
