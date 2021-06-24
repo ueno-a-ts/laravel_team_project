@@ -22,9 +22,8 @@ Route::prefix('employee')
     ->name('employee.')
     ->group(function(){
     Auth::routes();
+    Route::get('/home', 'EmployeeHomeController@index')->name('emplyee_home');
 });
-Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEmployee')->name('register');
-Route::get('/employee/home', 'EmployeeHomeController@index')->name('name');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -43,7 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-// 
+//
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin Route
