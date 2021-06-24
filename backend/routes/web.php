@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 // Auth Route
 Auth::routes();
 Route::prefix('employee')
@@ -22,8 +23,9 @@ Route::prefix('employee')
     ->group(function(){
     Auth::routes();
 });
-Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEmployee')->name('register');
-Route::get('/employee/home', 'EmployeeHomeController@index')->name('name');
+
+Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEmployee');
+Route::get('/employee/home', 'EmployeeHomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/top', 'ItemController@topIndex');
@@ -34,6 +36,15 @@ Route::get('/', 'ItemController@index');
 Route::get('/items/search', 'ItemController@itemSearch');
 
 Route::get('/items/{item}', 'ItemController@show');
+
+// Cart route
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/mycart', 'CartController@myCart');
+    Route::post('/items/mycart', 'CartController@addMycart');
+    Route::post('/cartdelete','CartController@deleteCart');
+    Route::post('/buy', 'CartController@buy');
+});
+
 
 // Admin Route
 Route::get('/admin', function(){

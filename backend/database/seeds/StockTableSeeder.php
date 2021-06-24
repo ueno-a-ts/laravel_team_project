@@ -19,7 +19,7 @@ class StockTableSeeder extends Seeder
        //2回目実行の際にシーダー情報をクリア
        DB::table('items')->truncate();
        DB::table('items')->insert([
-           'item_name' => 'エレキギター レッド',
+           'item_name' => 'レスポール レッド',
            'item_description' => 'プレイヤーの表現力に答える厳選された素材とこだわりとテクノロジー',
            'item_price' => 198000,
            'imgpath' => 'guitar_history_red.jpg',
@@ -28,7 +28,7 @@ class StockTableSeeder extends Seeder
        ]);
 
        DB::table('items')->insert([
-           'item_name' => 'エレキギター ブルー',
+           'item_name' => 'レスポール ブルー',
            'item_description' => 'プレイヤーの表現力に答える厳選された素材とこだわりとテクノロジー',
            'item_price' => 188000,
            'imgpath' => 'guitar_history_blue.jpg',
@@ -37,7 +37,7 @@ class StockTableSeeder extends Seeder
        ]);
 
        DB::table('items')->insert([
-           'item_name' => 'アコースティックギター ホワイト',
+           'item_name' => 'ストラトキャスター ホワイト',
            'item_description' => '王道ともいえるクラシカルなストラトスペック、数量限定生産の2019年モデル',
            'item_price' => 87000,
            'imgpath' => 'acoustic_guitar_white.jpg',
@@ -46,7 +46,7 @@ class StockTableSeeder extends Seeder
         ]);
 
        DB::table('items')->insert([
-           'item_name' => 'アコースティックギター イエロー',
+           'item_name' => 'テレキャスター イエロー',
            'item_description' => 'プレイヤーの表現力に答える厳選された素材とこだわりとテクノロジー',
            'item_price' => 75200,
            'imgpath' => 'acoustic_guitar_yellow.jpg',

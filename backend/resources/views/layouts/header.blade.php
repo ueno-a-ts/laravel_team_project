@@ -35,7 +35,7 @@
                         </li>
                         <li>
                             {{-- todo: カート --}}
-                          <a href="/cart" class="site-cart">
+                          <a href="/mycart" class="site-cart">
                             <span class="icon icon-shopping_cart"></span>
                           </a>
                         </li>
@@ -69,11 +69,9 @@
                     <li>
                         <a href="{{ route('login') }}">{{ __('LOGIN') }}</a>
                     </li>
-                @if (Route::has('register'))
                     <li>
                         <a href="{{ route('register') }}">{{ __('REGISTER') }}</a>
                     </li>
-                @endif
                 @else
                     <li>
                         <div>

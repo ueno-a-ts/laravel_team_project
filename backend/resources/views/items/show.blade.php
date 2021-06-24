@@ -9,6 +9,7 @@
             <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="img-fluid" >
         </div>
 
+
         <div class="col-md-6">
             <h1 class="text-black">{{ $item -> item_name }}</h1>
 
@@ -19,13 +20,13 @@
                 </strong>
             </p>
             <div>
-                {{-- todo: カートとの連携 --}}
-                <form method="POST" action="/">
+                <form method="POST" action="mycart">
                     @csrf
-                    <input type="hidden" name="cart_items" value="{{ $item -> id }}">
+                    <input type="hidden" name="item_id" value="{{ $item -> id }}">
                     <button class="btn btn-sm btn-primary" type="submit">カートに追加する</button>
                 </form>
             </div>
         </div>
+
     </div>
 @endsection
