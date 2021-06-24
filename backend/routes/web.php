@@ -15,12 +15,24 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+// Auth Route
+Auth::routes();
+Route::prefix('employee')
+    ->namespace('Employee')
+    ->name('employee.')
+    ->group(function(){
+    Auth::routes();
+});
+Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEmployee')->name('register');
+Route::get('/employee/home', 'EmployeeHomeController@index')->name('name');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 // Items route
 Route::get('/', 'ItemController@index');
 Route::get('/items/{item}', 'ItemController@show');
 
 // Cart route
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/mycart', 'CartController@myCart');
     Route::post('/items/mycart', 'CartController@addMycart');
@@ -31,7 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-Auth::routes();
+// 
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin Route
@@ -39,6 +51,7 @@ Route::get('/admin', function(){
     return view('admin');
 });
 
+// admin items Route
 Route::get('/admin/items', 'ItemController@adminIndex');
 Route::get('/admin/items/create', 'ItemController@adminCreate');
 Route::post('/admin/items', 'ItemController@adminStore');
@@ -46,3 +59,7 @@ Route::get('/admin/items/{item}', 'ItemController@adminShow')->name('admin.items
 Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
 Route::put('/admin/items/{item}', 'ItemController@adminUpdate');
 Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
+
+// admin users Route
+Route::get('/admin/users', 'UserController@adminIndex');
+Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
