@@ -16,9 +16,9 @@
         </div>
         <div>
             {{-- todo: カートとの連携 --}}
-            <form method="POST" action="/">
+            <form method="POST" action="mycart">
                 @csrf
-                <input type="hidden" name="cart_items" value="{{ $item -> id }}">
+                <input type="hidden" name="item_id" value="{{ $item -> id }}">
                 <button class="button" type="submit">カートに追加する</button>
             </form>
         </div>

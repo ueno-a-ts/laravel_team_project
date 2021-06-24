@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 // Auth Route
 Auth::routes();
 Route::prefix('employee')
@@ -26,9 +27,24 @@ Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEm
 Route::get('/employee/home', 'EmployeeHomeController@index')->name('name');
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 // Items route
 Route::get('/', 'ItemController@index');
 Route::get('/items/{item}', 'ItemController@show');
+
+// Cart route
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/mycart', 'CartController@myCart');
+    Route::post('/items/mycart', 'CartController@addMycart');
+    Route::post('/cartdelete','CartController@deleteCart');
+    Route::post('/buy', 'CartController@buy');
+});
+
+
+
+
+// 
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin Route
 Route::get('/admin', function(){
