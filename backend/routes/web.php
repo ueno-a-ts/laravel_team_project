@@ -20,10 +20,15 @@ Route::get('/', 'ItemController@index');
 Route::get('/items/{item}', 'ItemController@show');
 
 // Cart route
-Route::get('/mycart', 'CartController@myCart')->middleware('auth');
-Route::post('/items/mycart', 'CartController@addMycart');
-Route::post('/cartdelete','CartController@deleteCart');
-Route::post('/buy', 'CartController@buy');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/mycart', 'CartController@myCart');
+    Route::post('/items/mycart', 'CartController@addMycart');
+    Route::post('/cartdelete','CartController@deleteCart');
+    Route::post('/buy', 'CartController@buy');
+});
+
+
 
 
 Auth::routes();
