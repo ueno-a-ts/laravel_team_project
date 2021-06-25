@@ -8,6 +8,7 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
+
     public function myCart(Cart $cart)
     {
         // $user_id = Auth::id();
@@ -48,7 +49,7 @@ class CartController extends Controller
 
     public function buy(Cart $cart)
     {
-        $buy_info = $cart->checkoutCart();       
+        $buy_info = $cart->checkoutCart();
         return view('carts.buy');
     }
 }

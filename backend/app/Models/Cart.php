@@ -18,12 +18,12 @@ class Cart extends Model
     public function showCart()
     {
         $user_id = Auth::id();
-        return $this->where('user_id',$user_id)->get();
+        return $this->where('user_id',$user_id)->latest()->get();
     }
 
     public function addCart($item_id)
     {
-        $user_id = Auth::id(); 
+        $user_id = Auth::id();
         $cart_add_info = Cart::firstOrCreate(['item_id' => $item_id,'user_id' => $user_id]);
 
         if($cart_add_info->wasRecentlyCreated){
@@ -38,11 +38,11 @@ class Cart extends Model
 
     public function deleteCart($item_id)
     {
-        $user_id = Auth::id(); 
+        $user_id = Auth::id();
         $delete = $this->where('user_id', $user_id)->where('item_id',$item_id)->delete();
-        
+
         if($delete > 0){
-            $message = 'カートから一つの商品を削除しました';
+            $message = 'カートから1つの商品を削除しました';
         }else{
             $message = '削除に失敗しました';
         }
@@ -51,11 +51,11 @@ class Cart extends Model
 
     public function checkoutCart()
     {
-        $user_id = Auth::id(); 
+        $user_id = Auth::id();
         $checkout_items=$this->where('user_id', $user_id)->get();
         $this->where('user_id', $user_id)->delete();
 
-        return $checkout_items;     
+        return $checkout_items;
     }
 
 

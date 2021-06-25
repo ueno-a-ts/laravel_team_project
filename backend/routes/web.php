@@ -18,9 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 // Auth Route
 Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/top', 'ItemController@topIndex');
+Route::get('/user/{user}/edit', 'UserController@userEdit');
+Route::put('/user/{user}/update', 'UserController@userUpdate');
+
 
 // Items route
 Route::get('/', 'ItemController@index');
+Route::get('/items/search', 'ItemController@itemSearch');
 Route::get('/items/{item}', 'ItemController@show');
 
 // Cart route
@@ -32,29 +38,31 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
+Route::group(['middleware' => ['auth']], function () {
+    // Admin Route
+    Route::get('/admin', function(){
+        return view('admin');
+    });
 
+    // admin items Route
+    Route::get('/admin/items', 'ItemController@adminIndex');
+    Route::get('/admin/items/create', 'ItemController@adminCreate');
+    Route::post('/admin/items', 'ItemController@adminStore');
+    Route::get('/admin/items/{item}', 'ItemController@adminShow')->name('admin.items.show');
+    Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
+    Route::put('/admin/items/{item}', 'ItemController@adminUpdate');
+    Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
 
-//
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Admin Route
-Route::get('/admin', function(){
-    return view('admin');
+    // admin users Route
+    Route::get('/admin/users', 'UserController@adminIndex');
+    Route::put('/admin/users/{user}', 'UserController@adminUpdate');
+    Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
 });
 
-// admin items Route
-Route::get('/admin/items', 'ItemController@adminIndex');
-Route::get('/admin/items/create', 'ItemController@adminCreate');
-Route::post('/admin/items', 'ItemController@adminStore');
-Route::get('/admin/items/{item}', 'ItemController@adminShow')->name('admin.items.show');
-Route::get('/admin/items/{item}/edit', 'ItemController@adminEdit');
-Route::put('/admin/items/{item}', 'ItemController@adminUpdate');
-Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
-
-// admin users Route
-Route::get('/admin/users', 'UserController@adminIndex');
-Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
-
-Route::get('/auth/{user}/edit', 'UserController@showEdit')->name('edit');
-Route::put('/auth/{user}/update', 'UserController@exeUpdate')->name('update');
-
+// cart Route
+Route::get('/cart', function(){
+    return view('cart.cart');
+});
+Route::get('/thankyou', function(){
+    return view('cart.thankyou');
+});

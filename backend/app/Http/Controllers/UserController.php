@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -11,19 +12,27 @@ class UserController extends Controller
 
     public function adminIndex(){
        $users = User::latest()->get();
-       return view('admin.users.index', compact('users'));
-   }
+
+       if(Auth::user()->admin_check){
+            return view('admin.users.index', compact('users'));
+        }else{
+            return redirect('/top');
+        }
+    }
+
+    public function adminUpdate(Request $request){
+        $admin_check = $request->input('admin_check') === "1" ? 1 : 0;
+        $user = $request->input('user_id');
+        User::where('id', $user)
+            ->update(['admin_check' => $admin_check]);
+        return redirect('/admin/users');
+    }
 
    public function adminDestroy(User $user){
     $user = User::whereIn('id', $user)->delete();
     return redirect('/admin/users');
    }
 
-
-        protected function showEdit(User $user){
-
-    return view('edit', compact('user'));
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -41,10 +50,12 @@ class UserController extends Controller
         ]);
     }
 
-    public function exeUpdate(
-        Request $request,
-        User $user
-    ){
+    protected function userEdit(User $user){
+
+        return view('user.edit', compact('user'));
+    }
+
+    public function userUpdate(Request $request,User $user){
         $user->update(
             [
             'name' => $request->input('name'),
@@ -54,5 +65,4 @@ class UserController extends Controller
             ]);
         return redirect()->route('home');
     }
-
 }

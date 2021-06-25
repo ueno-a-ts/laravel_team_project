@@ -1,0 +1,78 @@
+/* top */
+.top-items-img{
+    width: 300px;
+    height: 300px;
+}
+.top-items-outer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.top-items-content{
+    margin: 20px;
+}
+.top-items-locate-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* items */
+.items-img{
+    width: 400px;
+    height: 400px;
+}
+.items-outer{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.items-content{
+    margin: 20px;
+}
+
+/* footer */
+.layout-footer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+/* admin */
+.delete{
+    margin-top: 10px;
+    background-color: #dc3545;
+}
+.admin_items_tool{
+    display: flex;
+    flex-direction: column;
+}
+
+/* admin user */
+.user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.user-card-outer{
+    width: 80%;
+    height: 300px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0px 20px 0px;
+}
+.user-card-info{
+    margin-left: 30px;
+}
+
+/* other */
+.list-paginate{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}

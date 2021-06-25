@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
     public function index(){
-        $items = Item::paginate(6);
+        $items = Item::latest()->paginate(6);
         return view('items.index', compact('items'));
     }
 
@@ -16,20 +17,49 @@ class ItemController extends Controller
         return view('items.show', compact('item'));
     }
 
+    public function topIndex(){
+        $items = Item::latest()->take(3)->get();
+        return view('items.topItem', compact('items'));
+    }
+
+    public function itemSearch(Request $request){
+        $search_word = $request -> input('item_search');
+
+        if (!empty($search_word)) {
+            $query = Item::where('item_name', 'LIKE', "%{$search_word}%")
+                ->orWhere('item_description', 'LIKE', "%{$search_word}%");
+        }
+
+        $items = $query->get();
+        return view('search', compact('items', 'search_word'));
+    }
 
     // todo: index/show を管理者・一般で表示分けし、コントローラーの重複を削除
 
     public function adminIndex(){
-        $items = Item::latest()->get();
-        return view('admin.items.index', compact('items'));
+        $items = Item::latest()->paginate(6);
+
+        if(Auth::user()->admin_check){
+            return view('admin.items.index', compact('items'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminShow(Item $item){
-        return view('admin.items.show', compact('item'));
+        if(Auth::user()->admin_check){
+            return view('admin.items.show', compact('item'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminCreate(){
-        return view('admin.items.create');
+        if(Auth::user()->admin_check){
+            return view('admin.items.create');
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminStore(Request $request){
@@ -59,7 +89,11 @@ class ItemController extends Controller
     }
 
     public function adminEdit(Item $item){
-        return view('admin.items.edit', compact('item'));
+        if(Auth::user()->admin_check){
+            return view('admin.items.edit', compact('item'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     // todo: 画像の変更も実装したい
