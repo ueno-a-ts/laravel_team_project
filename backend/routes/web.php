@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +15,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+
 // Auth Route
 Auth::routes();
-Route::prefix('employee')
-    ->namespace('Employee')
-    ->name('employee.')
-    ->group(function(){
-    Auth::routes();
-});
-Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEmployee')->name('register');
-Route::get('/employee/home', 'EmployeeHomeController@index')->name('name');
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 // Items route
 Route::get('/', 'ItemController@index');
@@ -43,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-// 
+//
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin Route
