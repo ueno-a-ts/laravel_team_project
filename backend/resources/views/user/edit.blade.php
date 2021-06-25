@@ -12,6 +12,13 @@
                         @csrf
                         @method('PUT')
 
+                        <div class="row justify-content-center">
+                            <p>
+                                <span class="text-danger">*</span>
+                                編集したい項目を選んで入力してください
+                            </p>
+                        </div>
+
                         <div class="form-group row">
                             <label for="name"
                                 class="col-md-4 col-form-label text-md-right"
