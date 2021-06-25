@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -11,7 +12,12 @@ class UserController extends Controller
 
     public function adminIndex(){
        $users = User::latest()->get();
-       return view('admin.users.index', compact('users'));
+
+       if(Auth::user()->admin_check){
+            return view('admin.users.index', compact('users'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminUpdate(Request $request){

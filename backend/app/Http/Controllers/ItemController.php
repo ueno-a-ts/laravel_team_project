@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -37,15 +38,28 @@ class ItemController extends Controller
 
     public function adminIndex(){
         $items = Item::latest()->get();
-        return view('admin.items.index', compact('items'));
+
+        if(Auth::user()->admin_check){
+            return view('admin.items.index', compact('items'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminShow(Item $item){
-        return view('admin.items.show', compact('item'));
+        if(Auth::user()->admin_check){
+            return view('admin.items.show', compact('item'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminCreate(){
-        return view('admin.items.create');
+        if(Auth::user()->admin_check){
+            return view('admin.items.create');
+        }else{
+            return redirect('/top');
+        }
     }
 
     public function adminStore(Request $request){
@@ -75,7 +89,11 @@ class ItemController extends Controller
     }
 
     public function adminEdit(Item $item){
-        return view('admin.items.edit', compact('item'));
+        if(Auth::user()->admin_check){
+            return view('admin.items.edit', compact('item'));
+        }else{
+            return redirect('/top');
+        }
     }
 
     // todo: 画像の変更も実装したい
