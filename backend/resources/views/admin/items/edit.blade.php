@@ -15,21 +15,26 @@
                   <h2>Edit Items</h2>
                 </div>
             </div>
+            <div class="row justify-content-center">
+                <p>
+                    <span class="text-danger">*</span>
+                    編集したい項目を選んで入力してください
+                </p>
+            </div>
 
-            <form method="POST" action="/admin/items" enctype="multipart/form-data">
+            <form method="POST" action="/admin/items/{{ $item -> id }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
 
                 <div class="p-3 p-lg-5 border">
                     <div class="form-group row">
                         <label for="item_name" class="text-black">
                             商品名
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-12">
                             <input
                                 type="text"
                                 name="item_name"
-                                required
                                 value="{{ $item -> item_name }}"
                                 class="form-control">
                             @error('item_name')
@@ -41,13 +46,11 @@
                     <div class="form-group row">
                         <label for="item_description" class="text-black">
                             商品説明
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-12">
                             <textarea
                                 type="text"
                                 name="item_description"
-                                required
                                 cols="30" rows="7"
                                 class="form-control"
                                 >{{ $item -> item_description }}</textarea>
@@ -60,13 +63,11 @@
                     <div class="form-group row">
                         <label for="item_price" class="text-black">
                             商品価格
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-12">
                             <input
                                 type="text"
                                 name="item_price"
-                                required
                                 value="{{ $item -> item_price }}"
                                 class="form-control">
                             @error('item_price')
@@ -75,15 +76,23 @@
                         </div>
                     </div>
 
-                <div class="field">
-                    <label for="tag" class="label">商品写真</label>
-                    <p>登録写真は、{{ $item -> imgpath }} です。</p>
-                    <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" style="width: 300px;height: 300px">
-                </div>
+                    <div class="form-img">
+                        <label for="tag" class="text-black">
+                            商品写真
+                        </label>
+                        <div>
+                            <p>
+                                <span class="icon icon-camera"></span>
+                                登録写真｜{{ $item -> imgpath }}
+                            </p>
+                        </div>
+                        <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" style="width: 300px;height: 300px">
+                    </div>
 
-                <div class="field is-grouped">
-                    <div>
-                        <button type="submit">Submit</button>
+                    <div class="form-group row">
+                        <div>
+                            <button type="submit" class="btn btn-sm btn-primary items-content">Submit</button>
+                        </div>
                     </div>
                 </div>
 

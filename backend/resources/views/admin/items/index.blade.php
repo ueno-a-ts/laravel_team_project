@@ -26,7 +26,8 @@
                 </a>
             @endforeach
         </div>
-
-
+        <div class="list-paginate">
+            {{ $items -> links() }}
+        </div>
     </div>
 @endsection

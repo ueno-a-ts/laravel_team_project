@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ItemController extends Controller
 {
     public function index(){
-        $items = Item::orderBy('updated_at', 'asc')->paginate(6);
+        $items = Item::latest()->paginate(6);
         return view('items.index', compact('items'));
     }
 
@@ -37,7 +37,7 @@ class ItemController extends Controller
     // todo: index/show を管理者・一般で表示分けし、コントローラーの重複を削除
 
     public function adminIndex(){
-        $items = Item::latest()->get();
+        $items = Item::latest()->paginate(6);
 
         if(Auth::user()->admin_check){
             return view('admin.items.index', compact('items'));

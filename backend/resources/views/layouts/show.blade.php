@@ -31,7 +31,11 @@
         <div class="container">
         <div class="row">
             {{-- todo: URLをパースしてページ遷移の動きを出したい --}}
-            <div class="col-md-12 mb-0"><a href="{{ url()->previous() }}">Back</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{ $item -> item_name }}</strong></div>
+            <div class="col-md-12 mb-0">
+                <a href="{{ url()->previous() }}">Back</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">{{ $item -> item_name }}</strong>
+            </div>
         </div>
         </div>
     </div>

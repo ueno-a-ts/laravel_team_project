@@ -59,13 +59,9 @@
                 <a href="/top">TOP</a>
               </li>
                 @if (Auth::check() && Auth::user()->admin_check)
-                    <li class="has-children">
-                        <a href="/admin">Admin</a>
-                        <ul class="dropdown">
-                        <li><a href="/admin/items">Admin Items</a></li>
-                        <li><a href="/admin/users">Admin Users</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/admin">Admin</a></li>
+                    <li><a href="/admin/items">Admin Items</a></li>
+                    <li><a href="/admin/users">Admin Users</a></li>
                 @else
                     <li>
                         <a href="/">Item</a>
