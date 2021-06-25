@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('page_title', 'user edit')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
