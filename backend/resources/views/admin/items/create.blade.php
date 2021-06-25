@@ -77,6 +77,7 @@
 
                     <div class="form-group row">
                         <label for="tag" class="text-black">
+                            <span class="icon icon-camera"></span>
                             商品写真
                             <span class="text-danger">*</span>
                         </label>

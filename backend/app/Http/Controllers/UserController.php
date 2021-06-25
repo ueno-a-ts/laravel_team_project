@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
    public function adminDestroy(User $user){
-    $user = User::whereIn('id', $user)->delete();
+    $user = User::find($user->id)->delete();
     return redirect('/admin/users');
    }
 
