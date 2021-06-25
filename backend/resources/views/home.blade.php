@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">ログイン成功!</div>
+                <div class="card-header">ホーム</div>
  
                 <div class="card-body">
                     @if (session('status'))
@@ -24,7 +24,9 @@
 <td>{{ Auth::user()->address }}</td>
 </tr>
 <br>
-<a href="./edit"><button class="user-btn">プロフィール内容の編集</button></a>
+<a href="./auth/{{Auth::user()->id}}/edit">
+編集
+</a>
 <tr>
                    
                     
