@@ -57,15 +57,16 @@
               <li>
                 <a href="/">Item</a>
               </li>
-              {{-- todo: admin header --}}
-              <li class="has-children">
-                <a href="/admin">Admin</a>
-                <ul class="dropdown">
-                  <li><a href="/admin/items">Admin Items</a></li>
-                  <li><a href="/admin/users">Admin Users</a></li>
-                </ul>
-              </li>
-              @guest
+                @if (Auth::check() && Auth::user()->admin_check)
+                    <li class="has-children">
+                        <a href="/admin">Admin</a>
+                        <ul class="dropdown">
+                        <li><a href="/admin/items">Admin Items</a></li>
+                        <li><a href="/admin/users">Admin Users</a></li>
+                        </ul>
+                    </li>
+                @endif
+                @guest
                     <li>
                         <a href="{{ route('login') }}">{{ __('LOGIN') }}</a>
                     </li>

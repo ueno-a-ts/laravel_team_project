@@ -23,7 +23,13 @@
                 <form method="POST" action="mycart">
                     @csrf
                     <input type="hidden" name="item_id" value="{{ $item -> id }}">
-                    <button class="btn btn-sm btn-primary" type="submit">カートに追加する</button>
+                    <button class="btn btn-sm btn-primary" type="submit">
+                        @if (Auth::check())
+                            カートに追加する
+                        @else
+                            ログインする
+                        @endif
+                    </button>
                 </form>
             </div>
         </div>

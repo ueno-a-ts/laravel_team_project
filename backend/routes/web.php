@@ -52,6 +52,7 @@ Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
 
 // admin users Route
 Route::get('/admin/users', 'UserController@adminIndex');
+Route::put('/admin/users/{user}', 'UserController@adminUpdate');
 Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
 
 // cart Route

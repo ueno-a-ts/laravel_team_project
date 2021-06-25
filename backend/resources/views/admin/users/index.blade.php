@@ -23,6 +23,39 @@
                             <li>{{ $user -> address }}</li>
                         </ul>
                     </div>
+
+                    <div>
+                        <script src="/js/checkbutton.js"></script>
+                        <form method="POST" action="/admin/users/{{ $user -> id }}">
+                            @csrf
+                            @method('PUT')
+
+                            <label for="option-sm" class="d-flex mr-3 mb-3">
+                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;">
+                                    <input
+                                        type="radio"
+                                        name="admin_check"
+                                        onclick="radioDeselection(this, 1)"
+                                        {{ old('admin_check') ? "checked" : ( ($user -> admin_check) === 1 ? "checked" : "") }}
+                                        value='1'>
+                                </span>
+                                    <span class="d-inline-block text-black">管理者</span>
+                            </label>
+                            <label for="option-sm" class="d-flex mr-3 mb-3">
+                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;">
+                                    <input
+                                        type="radio"
+                                        name="admin_check"
+                                        onclick="radioDeselection(this, 2)"
+                                        {{ old('admin_check') ? "checked" : ( ($user -> admin_check) === 0 ? "checked" : "") }}>
+                                </span>
+                                    <span class="d-inline-block text-black">一般</span>
+                            </label>
+                            <input type="hidden" name="user_id" value="{{ $user -> id }}">
+                            <button class="btn btn-sm btn-primary" type="submit">Edit</button>
+                        </form>
+                    </div>
+
                     <div>
                         <form method="POST" action="/admin/users/{{ $user -> id }}">
                             @csrf
@@ -31,6 +64,7 @@
                         </form>
                     </div>
                 </div>
+
             @endforeach
         </div>
     </div>
