@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +15,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+
 // Auth Route
 Auth::routes();
-Route::prefix('employee')
-    ->namespace('Employee')
-    ->name('employee.')
-    ->group(function(){
-    Auth::routes();
-});
-
-Route::get('/employee/register', 'Auth\RegisterController@showRegistrationFormEmployee');
-Route::get('/employee/home', 'EmployeeHomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/top', 'ItemController@topIndex');
 
 // Items route
@@ -44,7 +35,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/cartdelete','CartController@deleteCart');
     Route::post('/buy', 'CartController@buy');
 });
-
 
 // Admin Route
 Route::get('/admin', function(){
