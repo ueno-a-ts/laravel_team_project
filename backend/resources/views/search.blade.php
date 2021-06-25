@@ -9,7 +9,13 @@
     @if ($items->count())
         <div class="items-outer">
             @foreach ($items as $item)
-            <a href="/items/{{ $item -> id }}">
+
+                @if (Auth::check() && Auth::user() -> admin_check)
+                    <a href="/admin/items/{{ $item -> id }}">
+                @else
+                    <a href="/items/{{ $item -> id }}">
+                @endif
+
                     <div class="items-content">
                         <h3>{{ $item -> item_name }}</h3>
                         <img src="{{ asset('images/'. $item -> imgpath ) }}" alt="{{ $item -> imgpath }}" class="items-img" >

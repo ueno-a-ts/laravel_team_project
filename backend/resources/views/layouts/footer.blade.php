@@ -11,14 +11,17 @@
                 <li>
                     <a href="/top">Home</a>
                   </li>
-                  <li>
-                    <a href="/">Item</a>
-                  </li>
-                  <li>
-                    <a href="/admin">Admin</a>
-                      <li><a href="/admin/items">> Admin Items</a></li>
-                      <li><a href="/admin/users">> Admin Users</a></li>
-                  </li>
+                    @if (Auth::check() && Auth::user() -> admin_check)
+                        <li>
+                            <a href="/admin">Admin</a>
+                            <li><a href="/admin/items">> Admin Items</a></li>
+                            <li><a href="/admin/users">> Admin Users</a></li>
+                        </li>
+                    @else
+                        <li>
+                            <a href="/">Item</a>
+                        </li>
+                    @endif
                   @guest
                         <li>
                             <a href="{{ route('login') }}">{{ __('LOGIN') }}</a>

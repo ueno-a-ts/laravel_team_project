@@ -33,12 +33,13 @@
                                 </span>
                             </a>
                         </li>
-                        <li>
-                            {{-- todo: カート --}}
-                          <a href="/mycart" class="site-cart">
-                            <span class="icon icon-shopping_cart"></span>
-                          </a>
-                        </li>
+                        @if (Auth::check() && !Auth::user()->admin_check)
+                            <li>
+                                <a href="/mycart" class="site-cart">
+                                    <span class="icon icon-shopping_cart"></span>
+                                </a>
+                            </li>
+                        @endif
                     @endauth
                     <li class="d-inline-block d-md-none ml-md-0">
                         <a href="#" class="site-menu-toggle js-menu-toggle">
