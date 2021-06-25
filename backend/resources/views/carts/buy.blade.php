@@ -7,7 +7,7 @@
    <div class="container">
        <div class="row">
             <div class="col-md-12 text-center">
-                <h2 class="display-3 text-black">
+                <h2 class="display-4 text-black">
                 {{ Auth::user()->name }}さん<br>ご購入ありがとうございます</h2>
                 <span class="icon-check_circle display-3 text-success"></span>
                 <div class="lead mb-5">
