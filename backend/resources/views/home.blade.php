@@ -6,7 +6,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
             <div class="row justify-content-center">
                 <div class="col-md-7 site-section-heading text-center pt-4">
                   <h2>Profile</h2>
@@ -27,7 +26,7 @@
                         </ul>
                     </div>
                     <div>
-                        <a href="./edit">プロフィール内容の編集</a>
+                        <a href="/user/{{Auth::user()->id}}/edit">プロフィール内容の編集</a>
                     </div>
                 </div>
             </div>

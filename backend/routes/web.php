@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/top', 'ItemController@topIndex');
+Route::get('/user/{user}/edit', 'UserController@userEdit');
+Route::put('/user/{user}/update', 'UserController@userUpdate');
+
 
 // Items route
 Route::get('/', 'ItemController@index');

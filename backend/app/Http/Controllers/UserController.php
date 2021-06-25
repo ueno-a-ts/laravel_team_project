@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,4 +27,36 @@ class UserController extends Controller
     return redirect('/admin/users');
    }
 
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function create(User $user)
+    {
+        return User::create([
+            'name' => 'name',
+            'email' => 'email',
+            'address' =>'address',
+            'password' => Hash::make($data['password'])
+        ]);
+    }
+
+    protected function userEdit(User $user){
+
+        return view('user.edit', compact('user'));
+    }
+
+    public function userUpdate(Request $request,User $user){
+        $user->update(
+            [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'address' =>$request->input('address'),
+            'password' => Hash::make($request->input('name'))
+            ]);
+        return redirect()->route('home');
+    }
 }
