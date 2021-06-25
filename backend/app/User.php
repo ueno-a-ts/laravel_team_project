@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        public function path(){
+        return route('view.home.show', $this);
+    }
 }

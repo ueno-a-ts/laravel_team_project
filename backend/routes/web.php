@@ -39,3 +39,7 @@ Route::delete('/admin/items/{item}', 'ItemController@adminDestroy');
 // admin users Route
 Route::get('/admin/users', 'UserController@adminIndex');
 Route::delete('/admin/users/{user}', 'UserController@adminDestroy');
+
+Route::get('/auth/{user}/edit', 'UserController@showEdit')->name('edit');
+Route::put('/auth/{user}/update', 'UserController@exeUpdate')->name('update');
+
